@@ -7,10 +7,9 @@
     <parent>
           <groupId>com.jwattsuk</groupId>
           <artifactId>spring-boot-application-parent</artifactId>
-          <version>1.0.10</version>
+          <version>1.0.13</version>
           <relativePath />
     </parent>
-
 
     <groupId>com.jwattsuk.sampleservice</groupId>
     <artifactId>sample-service-parent</artifactId>
