@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class SampleServiceApplication extends SpringBootServletInitializer {
+public class SampleServiceApplication {
     private static final Logger LOG = LoggerFactory.getLogger(SampleServiceApplication.class);
 
     public static void main(String[] args) throws Exception {
