@@ -42,4 +42,14 @@ public class TradeRestServiceTests {
                 .andDo(print());
     }
 
+    @Test
+    void shouldReturnNotFoundTutorial() throws Exception {
+        long id = 1L;
+
+        when(tradeRepository.findById(id)).thenReturn(Optional.empty());
+        mockMvc.perform(get("/trades/{id}", id))
+                .andExpect(status().isNotFound())
+                .andDo(print());
+    }
+
 }
