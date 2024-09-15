@@ -20,22 +20,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TradeRestServiceTests {
 
     @MockBean
-    private JpaTradeRepository jpaTradeRepository;
-
-    @MockBean
     private TradeActionService tradeActionService;
 
     @Autowired
     private MockMvc mockMvc;
 
+    private final String ID = "66e6d5bc57beac65f5214b1c";
+
     @Test
     void shouldReturnTrade() throws Exception {
 
-        long id = 1L;
         Trade trade = new Trade("SWAP","UBS",100L,"BUY","GBP");
 
-        when(jpaTradeRepository.findById(id)).thenReturn(Optional.of(trade));
-        mockMvc.perform(get("/trades/{id}", id)).andExpect(status().isOk())
+        when(tradeActionService.GetTrade(ID)).thenReturn(Optional.of(trade));
+        mockMvc.perform(get("/trades/{id}", ID)).andExpect(status().isOk())
                 .andExpect(jsonPath("$.instrument").value(trade.getInstrument()))
                 .andExpect(jsonPath("$.buySell").value(trade.getBuySell()))
                 .andExpect(jsonPath("$.currency").value(trade.getCurrency()))
@@ -45,10 +43,9 @@ public class TradeRestServiceTests {
 
     @Test
     void shouldReturnNotFoundTutorial() throws Exception {
-        long id = 1L;
 
-        when(jpaTradeRepository.findById(id)).thenReturn(Optional.empty());
-        mockMvc.perform(get("/trades/{id}", id))
+        when(tradeActionService.GetTrade(ID)).thenReturn(Optional.empty());
+        mockMvc.perform(get("/trades/{id}", ID))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
