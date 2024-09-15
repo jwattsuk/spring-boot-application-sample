@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Objects;
 
@@ -11,7 +13,7 @@ import java.util.Objects;
 public class Trade {
 
     private @Id
-    @GeneratedValue Long id;
+    @UuidGenerator String id;
     @Setter
     private String instrument;
     private String counterparty;
@@ -45,7 +47,7 @@ public class Trade {
         this.currency = currency;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

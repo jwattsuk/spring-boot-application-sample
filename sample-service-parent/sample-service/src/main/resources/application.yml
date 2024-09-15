@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: development
+    active: dev # "local" will use H2, anything non-"local" will use MongoDB
   application:
     name: SampleService
 
@@ -9,3 +9,12 @@ server:
   servlet:
     context-path: /rest
 
+mongodb:
+  connectionString: mongodb+srv://cluster0admin:ZKyfj4bziDEZ0qkC@cluster0.oizco.mongodb.net/
+  user: cluster0admin
+  password: ZKyfj4bziDEZ0qkC
+  authSource: admin
+  replicaSet: atlas-j2d8vq-shard-0
+  batchSize: 100
+  databaseName: tradeStore
+  tradeCollection: otcTrade

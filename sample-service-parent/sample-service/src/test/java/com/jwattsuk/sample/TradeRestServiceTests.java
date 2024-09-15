@@ -1,8 +1,9 @@
 package com.jwattsuk.sample;
 
-import com.jwattsuk.sample.dao.TradeRepository;
+import com.jwattsuk.sample.dao.JpaTradeRepository;
 import com.jwattsuk.sample.rest.TradeRestService;
 import com.jwattsuk.sample.model.Trade;
+import com.jwattsuk.sample.services.TradeActionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,10 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TradeRestServiceTests {
 
     @MockBean
-    private TradeRepository tradeRepository;
+    private JpaTradeRepository jpaTradeRepository;
 
     @MockBean
-    private SampleProcessor sampleProcessor;
+    private TradeActionService tradeActionService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,7 +34,7 @@ public class TradeRestServiceTests {
         long id = 1L;
         Trade trade = new Trade("SWAP","UBS",100L,"BUY","GBP");
 
-        when(tradeRepository.findById(id)).thenReturn(Optional.of(trade));
+        when(jpaTradeRepository.findById(id)).thenReturn(Optional.of(trade));
         mockMvc.perform(get("/trades/{id}", id)).andExpect(status().isOk())
                 .andExpect(jsonPath("$.instrument").value(trade.getInstrument()))
                 .andExpect(jsonPath("$.buySell").value(trade.getBuySell()))
@@ -46,7 +47,7 @@ public class TradeRestServiceTests {
     void shouldReturnNotFoundTutorial() throws Exception {
         long id = 1L;
 
-        when(tradeRepository.findById(id)).thenReturn(Optional.empty());
+        when(jpaTradeRepository.findById(id)).thenReturn(Optional.empty());
         mockMvc.perform(get("/trades/{id}", id))
                 .andExpect(status().isNotFound())
                 .andDo(print());
