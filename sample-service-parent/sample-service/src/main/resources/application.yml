@@ -4,6 +4,9 @@ spring:
   application:
     name: SampleService
 
+threadPoolSize: 1
+threadCrashLimit: 10
+
 server:
   port: 8081
   servlet:
