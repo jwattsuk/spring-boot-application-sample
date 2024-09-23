@@ -1,6 +1,5 @@
 package com.jwattsuk.sample.integration.glue;
 
-import com.jwattsuk.sample.SampleServiceApplication;
 import com.jwattsuk.sample.model.Trade;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -9,7 +8,6 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +19,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class TestStepDefinitions  {
+public class TestStepDefinitions {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestStepDefinitions.class);
 
@@ -32,8 +30,8 @@ public class TestStepDefinitions  {
     @Given("^the following trades")
     public final void newTrades(final DataTable dataTable) {
         // Copy from Datatable to object
-        List<Map<String,String>> dataTableMaps = dataTable.asMaps();
-        for(Map<String,String> map : dataTableMaps) {
+        List<Map<String, String>> dataTableMaps = dataTable.asMaps();
+        for (Map<String, String> map : dataTableMaps) {
             Trade trade = new Trade(map.get("INSTRUMENT"), map.get("COUNTERPARTY"),
                     Long.valueOf(map.get("NOTIONAL")), map.get("BUYSELL"), map.get("CURRENCY"));
             trades.add(trade);
@@ -43,7 +41,7 @@ public class TestStepDefinitions  {
     @When("the trades are persisted")
     public final void saveTrades() {
         // Iterate the trades and post each object to the service
-        for(Trade trade : trades) {
+        for (Trade trade : trades) {
             RestAssured.baseURI = BASE_URL;
             RequestSpecification request = RestAssured.given();
             request.header("Content-Type", "application/json");
@@ -62,7 +60,7 @@ public class TestStepDefinitions  {
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json");
 
-        for(Trade trade : trades) {
+        for (Trade trade : trades) {
             Response response = request.get(String.format("/trades/%s", trade.getId()));
             assertThat(response.getStatusCode(), is(200));
         }

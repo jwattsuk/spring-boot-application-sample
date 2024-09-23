@@ -7,8 +7,12 @@ import java.util.Optional;
 
 public interface StorageStrategy {
     Optional<Trade> GetTrade(String id);
+
     List<Trade> GetAllTrades();
+
     Trade SaveNewTrade(Trade trade);
+
     Trade UpdateTrade(Trade newTrade, String id);
+
     void DeleteTrade(String id);
 }

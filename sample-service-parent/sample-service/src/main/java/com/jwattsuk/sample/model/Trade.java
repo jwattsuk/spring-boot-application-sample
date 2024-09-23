@@ -1,10 +1,8 @@
 package com.jwattsuk.sample.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Objects;
@@ -21,29 +19,14 @@ public class Trade {
     private String buySell;
     private String currency;
 
-    public Trade() {}
+    public Trade() {
+    }
 
     public Trade(String instrument, String counterparty, Long notional, String buySell, String currency) {
         this.instrument = instrument;
         this.counterparty = counterparty;
         this.notional = notional;
         this.buySell = buySell;
-        this.currency = currency;
-    }
-
-    public void setCounterparty(String counterparty) {
-        this.counterparty = counterparty;
-    }
-
-    public void setNotional(Long notional) {
-        this.notional = notional;
-    }
-
-    public void setBuySell(String buySell) {
-        this.buySell = buySell;
-    }
-
-    public void setCurrency(String currency) {
         this.currency = currency;
     }
 
@@ -59,16 +42,32 @@ public class Trade {
         return counterparty;
     }
 
+    public void setCounterparty(String counterparty) {
+        this.counterparty = counterparty;
+    }
+
     public Long getNotional() {
         return notional;
+    }
+
+    public void setNotional(Long notional) {
+        this.notional = notional;
     }
 
     public String getBuySell() {
         return buySell;
     }
 
+    public void setBuySell(String buySell) {
+        this.buySell = buySell;
+    }
+
     public String getCurrency() {
         return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     @Override

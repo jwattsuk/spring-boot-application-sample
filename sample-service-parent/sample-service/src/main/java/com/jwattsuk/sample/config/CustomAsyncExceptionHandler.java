@@ -1,11 +1,11 @@
 package com.jwattsuk.sample.config;
 
+import com.codahale.metrics.SlidingTimeWindowReservoir;
 import com.jwattsuk.sample.services.MessageListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.ApplicationContext;
-import com.codahale.metrics.SlidingTimeWindowReservoir;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -18,8 +18,8 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
     private static final Logger LOG = LoggerFactory.getLogger(CustomAsyncExceptionHandler.class);
     private static SlidingTimeWindowReservoir messageListenerCrashes =
             new SlidingTimeWindowReservoir(1, TimeUnit.MINUTES);
-    private ApplicationContext applicationContext;
     private final Integer crashLimit;
+    private ApplicationContext applicationContext;
 
     public CustomAsyncExceptionHandler(final ApplicationContext applicationContext, Integer crashLimit) {
         this.applicationContext = applicationContext;
@@ -34,8 +34,8 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
      * Handles an uncaught exception within an @Async call and will attempt a thread restart
      *
      * @param throwable the exception that caused the thread death
-     * @param method the @Async method that failed
-     * @param objects any parameters that were used to start the thread
+     * @param method    the @Async method that failed
+     * @param objects   any parameters that were used to start the thread
      */
     @Override
     public void handleUncaughtException(final Throwable throwable, final Method method,
@@ -67,7 +67,7 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
             int crashesInLastMinute = messageListenerCrashes.getSnapshot().getValues().length;
             LOG.info("{} crashes detected in last minute", crashesInLastMinute);
 
-            if(crashLimit == null || crashesInLastMinute > crashLimit) {
+            if (crashLimit == null || crashesInLastMinute > crashLimit) {
                 LOG.error("Too many crashes, terminating process");
                 exitSystem();
             }

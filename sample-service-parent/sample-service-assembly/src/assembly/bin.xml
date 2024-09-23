@@ -15,7 +15,8 @@
             <outputDirectory>/lib</outputDirectory>
             <fileMode>444</fileMode>
             <directoryMode>755</directoryMode>
-            <outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}</outputFileNameMapping>
+            <outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}
+            </outputFileNameMapping>
         </dependencySet>
     </dependencySets>
     <fileSets>

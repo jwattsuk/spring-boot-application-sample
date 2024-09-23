@@ -7,16 +7,15 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import com.mongodb.client.MongoClients;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,10 +27,9 @@ import java.util.concurrent.TimeUnit;
 @EnableConfigurationProperties(MongoDbProperties.class)
 @Profile("!local")
 public class MongoDbConfiguration {
+    private static final Logger LOG = LoggerFactory.getLogger(MongoDbConfiguration.class);
     @Autowired
     private MongoDbProperties mongoDbProperties;
-
-    private static final Logger LOG = LoggerFactory.getLogger(MongoDbConfiguration.class);
 
     @Bean
     MongoClient mongoClient() {

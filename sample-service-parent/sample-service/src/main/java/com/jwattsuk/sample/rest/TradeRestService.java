@@ -1,8 +1,8 @@
 package com.jwattsuk.sample.rest;
 
-import com.jwattsuk.sample.services.TradeActionService;
-import com.jwattsuk.sample.model.Trade;
 import com.jwattsuk.sample.exception.TradeNotFoundException;
+import com.jwattsuk.sample.model.Trade;
+import com.jwattsuk.sample.services.TradeActionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,8 +1,11 @@
 spring:
   profiles:
-    active: development
+    active: local # "local" will use H2, anything non-"local" will use MongoDB
   application:
     name: SampleService
+
+threadPoolSize: 1
+threadCrashLimit: 10
 
 server:
   port: 8081
