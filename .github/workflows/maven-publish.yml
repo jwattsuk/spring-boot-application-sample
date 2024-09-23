@@ -4,8 +4,9 @@
 name: Maven Package
 
 on:
-  release:
-    types: [created]
+  push
+  #release:
+  #  types: [created]
 
 jobs:
   build:
@@ -24,6 +25,9 @@ jobs:
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         # settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Print settings xml
+      run: cat /home/runner/.m2/settings.xml
 
     - name: Build with Maven
       env: 
