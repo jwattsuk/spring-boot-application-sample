@@ -30,9 +30,8 @@ jobs:
       run: cat /home/runner/.m2/settings.xml
 
     - name: Build with Maven
-      env: 
-        USERNAME: ${{github.actor}}
-        PASSWORD: ${{secrets.GITHUB_TOKEN}}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       run: mvn -B package --file sample-service-parent/pom.xml --settings settings.xml
 
     - name: Publish to GitHub Packages Apache Maven
