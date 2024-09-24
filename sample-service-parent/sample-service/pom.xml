@@ -6,11 +6,10 @@
     <parent>
         <groupId>com.jwattsuk.sampleservice</groupId>
         <artifactId>sample-service-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>sample-service</artifactId>
-    <version>1.0.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
