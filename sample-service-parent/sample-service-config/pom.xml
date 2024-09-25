@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.jwattsuk.sampleservice</groupId>
         <artifactId>sample-service-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>sample-service-config</artifactId>
