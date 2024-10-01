@@ -3,6 +3,7 @@ package com.jwattsuk.sample.rest;
 import com.jwattsuk.sample.exception.TradeNotFoundException;
 import com.jwattsuk.sample.model.Trade;
 import com.jwattsuk.sample.services.TradeActionService;
+import com.jwattsuk.sample.utils.TimingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,19 @@ public class TradeRestService {
 
     @GetMapping("/trades")
     List<Trade> all() {
-        return tradeActionService.GetAllTrades();
+        List<Trade> response;
+        TimingService.init();
+        var timer = TimingService.startTimer("GetAllTrades");
+        try {
+            response = tradeActionService.GetAllTrades();
+            TimingService.endTimer(timer);
+        } catch (Exception ex) {
+            TimingService.endTimer(timer, ex);
+            throw ex;
+        } finally {
+            TimingService.logTimings();
+        }
+        return response;
     }
 
     @PostMapping("/trades")
