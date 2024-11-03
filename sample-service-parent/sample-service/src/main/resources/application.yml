@@ -7,6 +7,12 @@ spring:
 threadPoolSize: 1
 threadCrashLimit: 10
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 server:
   port: 8081
   servlet:

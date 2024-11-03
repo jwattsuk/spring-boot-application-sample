@@ -18,3 +18,6 @@ Swagger docs:
 http://localhost:8081/rest/v3/api-docs
 
 http://localhost:8081/rest/swagger-ui/index.html
+
+Actuator:
+http://localhost:8081/rest/actuator
