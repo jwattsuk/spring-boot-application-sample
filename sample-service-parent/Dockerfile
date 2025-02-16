@@ -8,7 +8,7 @@ WORKDIR /app
 ARG OUTDIR=sample-service-assembly/target
 
 # Copy the app.tar.gz file into the container
-COPY ${OUTDIR}/sample-service-assembly-1.0.3-bin.tar.gz /app/app.tar.gz
+COPY ${OUTDIR}/sample-service-assembly-*-bin.tar.gz /app/app.tar.gz
 
 # Extract the app.tar.gz file, which contains lib/app.jar and all dependencies
 RUN tar -xzf app.tar.gz && rm app.tar.gz
