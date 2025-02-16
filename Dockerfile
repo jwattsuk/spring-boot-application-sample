@@ -10,8 +10,8 @@ ARG GITHUB_REPO=spring-boot-application-parent
 ARG GITHUB_TOKEN
 ARG PACKAGE_PATH=com/jwattsuk/sampleservice/sample-service-assembly
 
-# Install necessary tools
-RUN apt-get update && apt-get install -y curl jq
+# Install necessary tools (Alpine uses apk instead of apt-get)
+RUN apk add --no-cache curl jq
 
 # Fetch the latest version from GitHub Packages and download the binary
 RUN LATEST_VERSION=$(curl -s -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
@@ -31,4 +31,3 @@ EXPOSE 5005
 
 # Set the entrypoint to run the application
 ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-cp", "/app/lib/*", "com.jwattsuk.sample.SampleServiceApplication"]
-
