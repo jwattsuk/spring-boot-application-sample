@@ -13,7 +13,7 @@
 
     <groupId>com.jwattsuk.sampleservice</groupId>
     <artifactId>sample-service-parent</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>pom</packaging>
     <modules>
         <module>sample-service</module>
