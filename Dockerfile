@@ -10,8 +10,15 @@ ARG GITHUB_REPO=spring-boot-application-parent
 ARG GITHUB_TOKEN
 ARG PACKAGE_PATH=com/jwattsuk/sampleservice/sample-service-assembly
 
-# Install necessary tools (Alpine uses apk instead of apt-get)
-RUN apk add --no-cache curl jq
+# Install necessary tools based on OS
+RUN set -eux; \
+    if command -v apt-get > /dev/null; then \
+        apt-get update && apt-get install -y curl jq; \
+    elif command -v apk > /dev/null; then \
+        apk add --no-cache curl jq; \
+    else \
+        echo "Unsupported package manager" && exit 1; \
+    fi
 
 # Fetch the latest version from GitHub Packages and download the binary
 RUN LATEST_VERSION=$(curl -s -u "${GITHUB_USER}:${GITHUB_TOKEN}" \
