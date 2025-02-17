@@ -5,7 +5,7 @@ metadata:
   labels:
     app: sample-service-app
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: sample-service-app
@@ -17,3 +17,6 @@ spec:
       containers:
       - name: spring-boot-application-sample
         image: ghcr.io/jwattsuk/spring-boot-application-sample:latest
+        imagePullPolicy: Always
+      imagePullSecrets:
+        - name: ghrc-secret
