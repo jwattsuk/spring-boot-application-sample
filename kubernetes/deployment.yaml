@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-service-app
+  labels:
+    app: sample-service-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: sample-service-app
+  template:
+    metadata:
+      labels:
+        app: sample-service-app
+    spec:
+      containers:
+      - name: spring-boot-application-sample
+        image: ghcr.io/jwattsuk/spring-boot-application-sample:latest
