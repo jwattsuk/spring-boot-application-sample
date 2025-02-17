@@ -4,7 +4,8 @@
 name: Maven Package
 
 on:
-  push
+  workflow_dispatch:  # manual triggering
+  #push
   #release:
   #  types: [created]
 
