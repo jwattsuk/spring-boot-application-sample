@@ -20,4 +20,4 @@ spec:
         image: ghcr.io/jwattsuk/spring-boot-application-sample:latest
         imagePullPolicy: Always
       imagePullSecrets:
-        - name: ghrc-secret
+        - name: ghcr-secret
