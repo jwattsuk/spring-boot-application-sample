@@ -33,7 +33,41 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        # settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: maven-settings
+      run: |
+              echo "<settings>
+                      <activeProfiles>
+                        <activeProfile>github</activeProfile>
+                      </activeProfiles>
+                      <profiles>
+                          <profile>
+                          <id>github</id>
+                          <repositories>
+                            <repository>
+                              <id>central</id>
+                              <url>https://repo1.maven.org/maven2</url>
+                            </repository>
+                            <repository>
+                              <id>github</id>
+                              <url>https://maven.pkg.github.com/jwattsuk</url>
+                              <snapshots>
+                                <enabled>true</enabled>
+                              </snapshots>
+                            </repository>
+                          </repositories>
+                        </profile>
+                      </profiles>                    
+                      <servers>
+                        <server>
+                          <id>github</id>
+                          <username>jwattsuk</username>
+                          <password>${GITHUB_TOKEN_REF}</password>
+                        </server>
+                      </servers>
+                    </settings>" > /home/runner/.m2/settings.xml
+      env:
+        GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
 
     - name: Print settings xml
       run: cat /home/runner/.m2/settings.xml
