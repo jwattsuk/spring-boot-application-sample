@@ -5,7 +5,7 @@ FROM openjdk:17-jdk
 WORKDIR /app
 
 # Set build output directory
-ARG OUTDIR=sample-service-assembly/target
+ARG OUTDIR=sample-service-parent/sample-service-assembly/target
 
 # Copy the app.tar.gz file into the container
 COPY ${OUTDIR}/sample-service-assembly-*-bin.tar.gz /app/app.tar.gz
