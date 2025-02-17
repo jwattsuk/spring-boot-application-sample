@@ -17,7 +17,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: spring-boot-application-sample
-        image: ghcr.io/jwattsuk/spring-boot-application-sample:latest
+        image: ghcr.io/jwattsuk/spring-boot-application-sample:main
         imagePullPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret
