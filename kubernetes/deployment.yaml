@@ -14,6 +14,7 @@ spec:
       labels:
         app: sample-service-app
     spec:
+      serviceAccountName: default
       containers:
       - name: spring-boot-application-sample
         image: ghcr.io/jwattsuk/spring-boot-application-sample:latest
