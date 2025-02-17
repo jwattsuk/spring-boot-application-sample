@@ -50,7 +50,7 @@ jobs:
                             </repository>
                             <repository>
                               <id>github</id>
-                              <url>https://maven.pkg.github.com/jwattsuk</url>
+                              <url>https://maven.pkg.github.com/jwattsuk/REPOSITORY</url>
                               <snapshots>
                                 <enabled>true</enabled>
                               </snapshots>
