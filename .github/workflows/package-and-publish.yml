@@ -75,7 +75,7 @@ jobs:
     - name: Build with Maven
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: mvn -B package --file sample-service-parent/pom.xml --settings settings.xml
+      run: mvn -B package --file sample-service-parent/pom.xml --settings settings.xml -X
 
     - name: Set up QEMU (for multi-arch support)
       uses: docker/setup-qemu-action@v3
